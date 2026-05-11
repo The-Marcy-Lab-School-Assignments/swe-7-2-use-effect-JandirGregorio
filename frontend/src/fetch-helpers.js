@@ -1,4 +1,7 @@
 // Fetches all journal entries from GET /api/entries.
+
+import EntryCard from "./components/EntryCard";
+
 // Returns { data, error } — data is an array of entry objects, error is null on success.
 export const fetchEntries = async () => {
   try {
@@ -18,7 +21,7 @@ export const createEntry = async (entryData) => {
     const response = await fetch('/api/entries', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ entryData }),
+      body: JSON.stringify(entryData),
     });
     const data = await response.json();
     return { data, error: null };

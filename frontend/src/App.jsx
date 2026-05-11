@@ -25,8 +25,8 @@ const App = () => {
   return (
     <main>
       <h1>My Journal</h1>
-      <EntryForm />
-      <EntryList />
+      <EntryForm loadEntries={loadEntries}/>
+      <EntryList entries={entries} loadEntries={loadEntries}/>
     </main>
   );
 };
