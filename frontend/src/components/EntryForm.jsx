@@ -2,10 +2,20 @@ import { createEntry } from '../fetch-helpers';
 
 const MOODS = ['😢', '😠', '😐', '😊', '😂'];
 
-const EntryForm = () => {
+const EntryForm = ({ loadEntries }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
+
+    const title = form.elements.title.value;
+    const date = form.elements.date.value;
+    const mood = form.elements.mood.value;
+    const content = form.elements.content.value;
+
+    const { error } = await createEntry({ title, date, mood, content });
+    if (error) return console.error(error);
+
+    await loadEntries();
     form.reset();
   };
 
