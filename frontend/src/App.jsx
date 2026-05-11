@@ -13,8 +13,14 @@ const App = () => {
   const [entries, setEntries] = useState(defaultEntries);
 
   const loadEntries = async () => {
-
+    const { data, error } = await fetchEntries();
+    if (error) return console.error(error);
+    setEntries(data);
   };
+
+  useEffect(() => {
+    loadEntries();
+  }, []);
 
   return (
     <main>
